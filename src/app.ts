@@ -2,7 +2,9 @@ import express from 'express';
 import config from './config';
 
 async function startServer() {
-  const app: express.Application = express();
+  const app = express();
+
+  (await import('./loaders')).default({ app });
 
   app
     .listen(config.port, () =>
